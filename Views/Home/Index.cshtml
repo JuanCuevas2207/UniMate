@@ -1,8 +1,27 @@
-﻿@{
+﻿@model IEnumerable<UniMate.Classes.Residence>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center my-3">
+    <h1 class="display-4">Bienvenido a UniMate</h1>
+</div>
+
+<div class="text-center row">
+    @foreach (var residence in Model) {
+        <div class="col-3 p-3 card">
+            <label>@Html.DisplayNameFor(model => model.address): @Html.DisplayFor(modelItem => residence.address)</label>
+            <label>@Html.DisplayNameFor(model => model.cost): @Html.DisplayFor(modelItem => residence.cost)</label>
+            <label>@Html.DisplayNameFor(model => model.availability): @(residence.availability ? "Sí" : "No")</label>
+            @if(residence.availability)
+            {
+                <label>
+                    @Html.DisplayNameFor(model => model.availabiltyDate): @Html.DisplayFor(modelItem => residence.availabiltyDate)
+                </label>
+            }
+            <label>@Html.DisplayNameFor(model => model.roomsNumber): @Html.DisplayFor(modelItem => residence.roomsNumber)</label>
+            <label>@Html.DisplayNameFor(model => model.rating): @Html.DisplayFor(modelItem => residence.rating)</label>
+        </div>
+    }
 </div>

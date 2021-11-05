@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using UniMate.Models;
+using UniMate.Classes;
 
 namespace UniMate.Controllers
 {
@@ -20,18 +17,24 @@ namespace UniMate.Controllers
 
         public IActionResult Index()
         {
-            return View();
-        }
+            List<Residence> recidences = new List<Residence>();
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+            Residence residence = new Residence{
+                address = "Cll",
+                cost = 1,
+                availability = true,
+                availabiltyDate = DateTime.Today,
+                roomsNumber = 4,
+                rating = 5
+            };
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            recidences.Add(residence);
+            recidences.Add(residence);
+            recidences.Add(residence);
+            recidences.Add(residence);
+            recidences.Add(residence);
+            
+            return View(recidences);
         }
     }
 }

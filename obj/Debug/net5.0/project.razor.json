@@ -15644,11 +15644,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Juan Ma\\Documents\\Trabajos U Sabana\\11vo semestre\\Diseño y arquitectura de software\\UniMate\\Views\\Home\\Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\Juan Ma\\Documents\\Trabajos U Sabana\\11vo semestre\\Diseño y arquitectura de software\\UniMate\\Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"
