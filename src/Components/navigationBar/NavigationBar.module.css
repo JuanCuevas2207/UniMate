@@ -1,0 +1,109 @@
+.header {
+  background-color: #8bdffe;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form{
+  width: 500px;
+}
+
+.buscador {
+  padding-left: 15px;
+  background-color: white;
+  color: green;
+  width: 100%;
+  font-size: 15px;
+  outline: none;
+  border: 2px solid black;
+  border-right: none;
+}
+
+.button{
+  width: 30%;
+  background-color: #166c9b;
+  color: white;
+  font-size: 15px;
+  border: 2px solid black;
+  border-left: none;
+}
+
+.buscador:focus {
+  border: 2px solid black;
+  border-right: none;
+}
+
+.button:focus{
+  border: 2px solid black;
+  border-left: none;
+}
+
+.button:hover{
+    font-weight: 700;
+}
+
+.menuImg:hover{
+  cursor: pointer;
+}
+
+.logoImage{
+  height: 80px;
+}
+
+.logoImage:hover{
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1000px){
+  .menuImg{
+    width: 28px;
+    height: 28px;
+  }
+
+  .form{
+    width: 400px;
+    font-size: 13px;
+  }
+
+  .button{
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 880px){
+  .menuImg{
+    width: 26px;
+    height: 26px;
+  }
+
+  .form{
+    width: 280px;
+    font-size: 11px;
+  }
+
+  .button{
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 650px){
+  .buscador{
+    font-size: 12px;
+  }
+  
+  .menuImg{
+    width: 22px;
+    height: 22px;
+  }
+
+  .form{
+    width: 220px;
+    font-size: 10px;
+  }
+
+  .button{
+    font-size: 10px;
+  }
+}
