@@ -1,31 +1,16 @@
-import React, { Component } from 'react'
-import axios from 'axios';
-const url = 'http://localhost:4000';
-export default class SignIn extends Component {
-    state = {
-        email: '',
-        password: ''
-    }
-    onInputChange = (e) => {
-        this.setState({ [e.target.id]: e.target.value });
-    }
-     onSubmit=async(e)=>{
-        e.preventDefault();     
-        const r=await axios.post(url+'/signin',this.state);
-        console.log(r);
+import { Component } from 'react'
+import BrandBar from '../Components/brandBar/BrandBar'
+import LoginContainer from '../Components/loginContainer/LoginContainer'
 
-    }
-    render() {
-        return (
-            <form>
-                <div className="mb-3">
-                    <input type="email" className="form-control" id="email" placeholder='email' onChange={this.onInputChange} />
-                </div>
-                <div className="mb-3">
-                    <input type="password" className="form-control" id="password" placeholder='password' onChange={this.onInputChange}/>
-                </div>
-                <button type="submit" className="btn btn-primary" onClick={this.onSubmit}>Join</button>
-            </form>
+class SignIn extends Component{
+    render(){
+		return(
+            <div>
+                <BrandBar/>
+                <LoginContainer/>
+            </div>
         )
     }
 }
+
+export default SignIn;

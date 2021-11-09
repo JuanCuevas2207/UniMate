@@ -1,0 +1,66 @@
+.residence{
+    width: 215px;
+    height: auto;
+    margin: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+    box-shadow: 2px 2px 5px rgb(180, 180, 180);
+    background-size: cover;
+    position: relative;
+    border-radius: 10px;
+}
+
+.residence:before{
+    content: '';
+    background-color: white;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.residence:hover{
+    color: #26466f;
+    cursor: pointer;
+}
+
+.residence:hover .recipeName{
+    color: #0D4E70;
+    cursor: pointer;
+}
+
+.residence:hover .time{
+    display: inline;
+}
+
+.recresidenceipe:hover .rating .fullStar{
+    color: #0D4E70;
+}
+
+.residence:hover .rating .star{
+    color: black;
+}
+
+.data{
+    position: relative;
+    font-size: 25px;
+}
+
+.rating{
+    position: relative;
+    font-size: 25px;
+}
+
+@media screen and (max-width: 720px){
+    .recipe{
+        width: 130px;
+        height: 115px;
+        margin: 25px;
+        border-radius: 5px;
+    }
+  }
