@@ -2,7 +2,7 @@ import { Component } from 'react'
 import Residences from '../Components/residences/Residences';
 import Filters from '../Components/filters/Filters';
 import NavigationBar from '../Components/navigationBar/NavigationBar';
-import Spinner from '../Components/spinner/Spinner'
+import Spinner from '../Components/spinners/Spinner'
 import { connect } from 'react-redux'
 import * as actionCreators from '../Store/Actions/residence'
 
@@ -35,7 +35,7 @@ class Home extends Component {
 
     render() {
         return (
-            <>
+            <div>
                 <NavigationBar />
                 <div className={'m-5 row'}>
                     <div className={'col-4'}>
@@ -46,7 +46,7 @@ class Home extends Component {
                         {this.renderResidences()}
                     </div>
                 </div>
-            </>
+            </div>
         )
     }
 }
