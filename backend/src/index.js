@@ -3,7 +3,8 @@ const app = express();
 const cors = require('cors');
 const Roomate = require('../obj/Roommate');
 const { initializeApp } = require("firebase/app");
-const { doc, setDoc, getFirestore, collection, getDocs, query, updateDoc, deleteDoc, where } = require("firebase/firestore");
+const { doc, setDoc, getFirestore, collection, getDocs, updateDoc, deleteDoc} = require("firebase/firestore");
+const { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword} =require("firebase/auth");
 const firebaseConfig = {
 
     apiKey: "AIzaSyB65FMzJj0a4pJ8JVC94IbVr5oGEXxlWXU",
@@ -21,7 +22,7 @@ const firebaseConfig = {
 };
 const db = initializeApp(firebaseConfig);
 const fs = getFirestore(db);
-
+const auth=getAuth(db);
 app.listen('4000', () => {
     console.log('server on port 4000');
 });
@@ -33,6 +34,13 @@ app.get('/', (req, res) => {
     res.send('Welcome to API');
 
 
+});
+app.post('/signin',async(req,res)=>{
+    const {email,password}=req.body;
+    const r=await signInWithEmailAndPassword(auth,email,password).catch(
+        res.json({'msg':'error'})
+    );
+    res.json(r);
 });
 async function sendData(c, id, info) {
     await setDoc(doc(fs, c, id), info);
@@ -79,8 +87,12 @@ app.get('/roommate/:email', async (req, res) => {
     res.send(await getOne('roommates', req.params.email))
 })
 app.post('/roommate', async (req, res) => {
+    
     const { userName, password, name, lastName, phone, email, bornYear, gender } = req.body;
-    res.json(await sendData("roommates", email, req.body));
+    const a=await createUserWithEmailAndPassword(auth,email,password);
+    const r=await sendData("roommates", email, req.body);
+    console.log(a.length)
+    res.json(a);
 });
 app.put('/roommate', async (req, res) => {
     const { userName, password, name, lastName, phone, email, bornYear, gender } = req.body;
