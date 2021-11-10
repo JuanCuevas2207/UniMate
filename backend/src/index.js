@@ -3,8 +3,8 @@ const app = express();
 const cors = require('cors');
 const Roomate = require('../obj/Roommate');
 const { initializeApp } = require("firebase/app");
-const { doc, setDoc, getFirestore, collection, getDocs, updateDoc, deleteDoc} = require("firebase/firestore");
-const { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword} =require("firebase/auth");
+const { doc, setDoc, getFirestore, collection, getDocs, updateDoc, deleteDoc } = require("firebase/firestore");
+const { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } = require("firebase/auth");
 const firebaseConfig = {
 
     apiKey: "AIzaSyB65FMzJj0a4pJ8JVC94IbVr5oGEXxlWXU",
@@ -22,7 +22,7 @@ const firebaseConfig = {
 };
 const db = initializeApp(firebaseConfig);
 const fs = getFirestore(db);
-const auth=getAuth(db);
+const auth = getAuth(db);
 app.listen('4000', () => {
     console.log('server on port 4000');
 });
@@ -33,12 +33,11 @@ app.use(cors());
 app.get('/', (req, res) => {
     res.send('Welcome to API');
 
-
 });
-app.post('/signin',async(req,res)=>{
-    const {email,password}=req.body;
-    const r=await signInWithEmailAndPassword(auth,email,password).catch(
-        res.json({'msg':'error'})
+app.post('/signin', async (req, res) => {
+    const { email, password } = req.body;
+    const r = await signInWithEmailAndPassword(auth, email, password).catch(
+        res.json({ 'msg': 'error' })
     );
     res.json(r);
 });
@@ -51,7 +50,6 @@ async function getData(c) {
     const values = await getDocs(cole);
     var r = [];
     values.forEach((doc) => {
-        console.log(doc)
         r.push({ [doc.id]: [doc.data()] })
     });
     return r;
@@ -61,10 +59,10 @@ async function getOne(c, id) {
     const values = await getDocs(cole);
     var r = [];
     values.forEach((doc) => {
-        if(doc.id==id){
+        if (doc.id == id) {
             r.push({ [doc.id]: [doc.data()] })
         }
-        
+
     });
     return r;
 }
@@ -87,11 +85,10 @@ app.get('/roommate/:email', async (req, res) => {
     res.send(await getOne('roommates', req.params.email))
 })
 app.post('/roommate', async (req, res) => {
-    
+
     const { userName, password, name, lastName, phone, email, bornYear, gender } = req.body;
-    const a=await createUserWithEmailAndPassword(auth,email,password);
-    const r=await sendData("roommates", email, req.body);
-    console.log(a.length)
+    const a = await createUserWithEmailAndPassword(auth, email, password);
+    const r = await sendData("roommates", email, req.body);
     res.json(a);
 });
 app.put('/roommate', async (req, res) => {
@@ -103,8 +100,6 @@ app.delete('/roommate', async (req, res) => {
     const { email } = req.body;
     res.json(await deleteData('roommates', email));
 });
-
-
 
 //CRUD Lessee
 
@@ -131,17 +126,17 @@ app.delete('/lessee', async (req, res) => {
 //CRUD residence
 
 app.get('/residence', async (req, res) => {
-    res.send(await getData('residence'))
+    res.send(await getData('residences'))
 })
 app.get('/residence/:id', async (req, res) => {
     res.send(await getOne('residences', req.params.id))
 })
 app.post('/residence', async (req, res) => {
-    const { id,address,locality,roomNumber,cost,avb,avbDate,furnished,mood,rating,comments } = req.body;
+    const { id } = req.body;
     res.json(await sendData("residences", id, req.body));
 });
 app.put('/residence', async (req, res) => {
-    const { id,address,locality,roomNumber,cost,avb,avbDate,furnished,mood,rating,comments } = req.body;
+    const { id, address, locality, roomNumber, cost, avb, avbDate, furnished, mood, rating, comments } = req.body;
     res.json(await updateData('residences', id, req.body));
 
 });
