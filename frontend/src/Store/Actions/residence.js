@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import databaseAxios from "../../Instances/database/databaseAxios";
+import databaseAxios from "../../Instances/databaseAxios";
 
 const startResidenceLoading = () => {
   return {
@@ -26,7 +26,7 @@ const loadResidence = (residence) => {
     return (dispatch) => {
       dispatch(startResidenceLoading());
       databaseAxios
-        .get("/residences.json")
+        .get("residence")
         .then((response) => {
           const residence = Object.values(response.data)
           dispatch(loadResidence(residence));
